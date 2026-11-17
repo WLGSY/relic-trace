@@ -1,0 +1,6 @@
+import request from './request'
+
+/** 登录认证 */
+export const login = (data) => request.post('/auth/login', data)
+export const logout = () => request.post('/auth/logout')
+export const getProfile = () => request.get('/auth/profile')

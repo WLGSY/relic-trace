@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.relictrace</groupId>
+        <artifactId>relic-trace</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>relic-trace-boot</artifactId>
+    <name>relic-trace-boot</name>
+    <description>启动模块：唯一的应用入口，聚合全部业务模块并对外提供 HTTP 服务</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.relictrace</groupId>
+            <artifactId>relic-trace-user</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.relictrace</groupId>
+            <artifactId>relic-trace-relic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.relictrace</groupId>
+            <artifactId>relic-trace-trace</artifactId>
+        </dependency>
+
+        <!-- MySQL 驱动只在运行期需要 -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>relic-trace-boot</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

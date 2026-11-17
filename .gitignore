@@ -1,0 +1,31 @@
+target/
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+.idea/
+*.iml
+.vscode/
+.DS_Store
+.env
+
+# 前端
+frontend/node_modules/
+frontend/dist/
+frontend/dist_old_*/
+
+# 上传附件（保留目录，忽略内容）
+uploads/*
+!uploads/.gitkeep
+
+# 证书与私钥（自签证书仅本机使用，不入库）
+frontend/deploy/certs/
+*.key
+*.pem
+*.p12
+*.jks
+
+# 日志与临时文件
+*.log
+logs/
+~$*
+*.tmp

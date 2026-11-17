@@ -1,0 +1,4 @@
+/* 样式入口：顺序不可调换 —— 先 Element Plus，再设计系统覆盖 */
+@import './tokens.css';
+@import './base.css';
+@import './element.css';

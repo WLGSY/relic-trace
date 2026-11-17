@@ -1,0 +1,12 @@
+node_modules
+dist
+dist-ssr
+dist_old_*
+.DS_Store
+*.local
+.vite
+npm-debug.log*
+yarn-error.log*
+
+# Nginx 二进制（可从 https://nginx.org/download/ 重新下载）
+deploy/nginx-1.28.0/

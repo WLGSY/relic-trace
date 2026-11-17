@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.relictrace</groupId>
+        <artifactId>relic-trace</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>relic-trace-relic</artifactId>
+    <name>relic-trace-relic</name>
+    <description>藏品服务模块：征集、编目建档、库房仓位、出入库、修复、展览借调、注销</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.relictrace</groupId>
+            <artifactId>relic-trace-common</artifactId>
+        </dependency>
+        <!-- 溯源二维码：QR Code 编码与矩阵生成 -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+    </dependencies>
+</project>

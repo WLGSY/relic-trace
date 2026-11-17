@@ -1,0 +1,68 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: relic-trace-server
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/relic_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+    default-property-inclusion: non_null
+  servlet:
+    multipart:
+      # 藏品影像等附件上传：Spring Boot 默认仅 1MB，需显式调大
+      max-file-size: 20MB
+      max-request-size: 40MB
+
+mybatis-plus:
+  configuration:
+    # 下划线字段自动映射为驼峰（如 fk_warehouse_id -> fkWarehouseId），与前端字段对齐
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  global-config:
+    db-config:
+      # 主键类型：雪花算法（分布式唯一 ID）
+      id-type: assign_id
+      # 逻辑删除配置（is_deleted：0 未删除 / 1 已删除）
+      logic-delete-field: isDeleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+    banner: false
+
+# 业务自定义配置
+relic:
+  # 附件根目录（藏品影像、修复照片等），对外映射为 /api/uploads/**
+  # 绝对路径可保证 IDEA 启动与 java -jar 启动指向同一目录；换机器时改这里或设环境变量
+  upload-dir: ${RELIC_UPLOAD_DIR:E:/毕业设计/relic-trace/uploads}
+  # 附件上传限制（与 spring.servlet.multipart 保持一致）
+  upload:
+    # 单个附件大小上限（MB）
+    max-size: ${RELIC_UPLOAD_MAX_SIZE:20}
+  # 溯源二维码
+  qr:
+    # 扫码后跳转的前端地址：手机扫码时必须是电脑的局域网 IP（手机访问不到 localhost）
+    # 用 https 是为了让手机端页面处于「安全上下文」，否则浏览器会禁用摄像头 getUserMedia
+    # 改完需重启后端，并在二维码管理页点「批量重建」刷新已生成的码
+    base-url: ${RELIC_QR_BASE_URL:https://10.19.6.8}
+    # 二维码图片边长（像素）
+    size: ${RELIC_QR_SIZE:360}
+  jwt:
+    # JWT 签名密钥（生产环境务必通过环境变量覆盖）
+    secret: ${RELIC_JWT_SECRET:relic-trace-graduation-project-2026-secret-key-please-change}
+    # 访问令牌有效期（毫秒），默认 12 小时
+    expire: ${RELIC_JWT_EXPIRE:43200000}
+
+logging:
+  level:
+    com.relictrace: info
