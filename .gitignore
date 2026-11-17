@@ -29,3 +29,8 @@ frontend/deploy/certs/
 logs/
 ~$*
 *.tmp
+
+# 本机演示工具（隧道客户端 52MB，不入库）
+deploy-local/bin/
+deploy-local/logs/
+deploy-local/.runtime.json
